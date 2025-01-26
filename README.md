@@ -77,11 +77,12 @@ Data Preprocessing
 
    Evaluation Metric: R² (coefficient of determination).
     
-   ![Imputaion methods](https://github.com/user-attachments/assets/8d958447-885c-4e92-9440-f4d0c4db1561)
-
+ 
+     
 ## Analysis and Results
   
   Model Performance Across Strategies        
+   ![Imputaion methods](https://github.com/user-attachments/assets/8d958447-885c-4e92-9440-f4d0c4db1561)
 
 
 
