@@ -1,17 +1,10 @@
 # Developing-a-Machine-Learning-Model-to-Predict-Prices-for-Rental-Properties
-## Introduction
-This project aims to build a machine learning regression model to predict the prices of Rental properties. The model will analyze various factors such as property size, location, amenities, and market trends to provide accurate price estimates. This will help property owners set competitive prices and assist guests in making informed booking decisions.
 
-## Table of Contents
-Introduction
-Project Structure
-Data Collection
-Data Preprocessing
-Exploratory Data Analysis (EDA)
-Model Selection
-Model Training and Validation
-Contributing
-License
+## Introduction
+The objective of this project is to predict the rental property prices using machine learning. More specifically, the goal is to develop a model that accurately forecasts the price of rental properties based on various features such as location, amenities, property size, and other factors.
+
+Dataset: The dataset includes variables such as accommodates, bedrooms, review_scores_rating, room_type, and instant_bookable.
+
 
 ## Project Structure
 data/: Contains raw and processed data files.
@@ -20,6 +13,7 @@ scripts/: Python scripts for data preprocessing, model training, and deployment.
 models/: Saved machine learning models.
 reports/: Generated analysis reports and visualizations.
 README.md: Project overview and instructions.
+
 
 ## Data Collection
 The data for this project is collected from various sources, including:
@@ -37,32 +31,118 @@ Age of the property
 Historical price trends
 Data Preprocessing
 
-## Steps involved in data preprocessing:
 
-Data Cleaning: Handle missing values, remove duplicates, and correct inconsistencies.
-Feature Engineering: Create new features like price per square foot and neighborhood quality index.
-Data Transformation: Normalize or standardize numerical features and encode categorical variables.
-Exploratory Data Analysis (EDA)
-EDA involves:
+## Data Description:
 
-## Computing descriptive statistics for numerical features.
-Visualizing data distributions and relationships using histograms, scatter plots, and box plots.
-Creating a correlation matrix to identify relationships between features and prices.
+   Initial Data:
 
-## Model Selection
-Regression algorithms considered:
+   Rows: df.shape[0] (original count before preprocessing).
 
-## Linear Regression
-Model Training and Validation
-Split data into training and testing sets (e.g., 80/20 split).
+   Columns: df.shape[1] (e.g., log_price, room_type, cancellation_policy, etc.).
 
-## Contributing
-Contributions are welcome! Please follow these steps:
 
-## Fork the repository.
-Create a new branch (git checkout -b feature-branch).
-Make your changes and commit them (git commit -m 'Add new feature').
-Push to the branch (git push origin feature-branch).
-Open a pull request.
-## License
-This project is licensed under the MIT License.
+   Key steps:
+
+   Dropped duplicates and the irrelevant id column.
+
+   Encoded categorical variables (room_type, cancellation_policy, instant_bookable) using one-hot encoding.
+
+  
+  Missing Values:
+
+  Three imputation strategies tested:
+
+   Mean imputation: Filled missing values with column means.
+
+   Median imputation: Filled missing values with column medians.
+
+   KNN imputation: Used KNNImputer (neighbors=5) for multivariate imputation.
+
+ 
+  Outliers Treatment:
+
+  Treated using IQR method (capping values beyond 1.5×IQR).
+
+
+## Methodology
+   Tools: Python (Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn).
+
+   Preprocessing:
+
+   Encoded categorical variables into dummy variables.
+
+   Split data into training (70%) and testing (30%) sets.
+
+   Model: Linear Regression.
+
+   Evaluation Metric: R² (coefficient of determination).
+    
+
+## Analysis and Results
+  
+  Model Performance Across Strategies        
+
+  Imputation Method	       Outlier Treatment        	R² (Train)
+    
+  Mean	                         No	                    0.697
+  Mean                         	Yes	                    0.683
+  Median	                       No	                    0.697
+  Median	                      Yes	                    0.683
+  KNN	                           No	                    0.703
+  KNN                         	Yes	                    0.686
+
+
+## Key Insights
+ 
+  1  KNN imputation performed best, likely due to its ability to preserve relationships in the data.
+
+  2  Outlier treatment reduced model performance, suggesting outliers (e.g., luxury properties) may reflect pricing trends.
+
+  3  Feature Impact:
+
+   Positive coefficients: accommodates (+0.062), bedrooms (+0.043), room_type_Private room (+0.076).
+
+   Negative coefficients: instant_bookable_True (-0.021).
+
+
+## Visualizations
+    
+  Heatmap: Highlighted strong correlations between log_price and features like accommodates and bedrooms.
+  ![corelation](https://github.com/user-attachments/assets/b247f8f6-cf35-47af-b3a4-fdad556bd07b)
+
+
+  
+
+  Boxplots: Showed reduced variance after outlier treatment.
+  ![with outlier](https://github.com/user-attachments/assets/36c19732-5827-40ac-848d-5a16222d48b8)
+
+  ![without outlier](https://github.com/user-attachments/assets/224bc966-3e29-4fcd-a7c4-894eb5c27735)
+
+
+       
+## Conclusion.   
+
+   Interpretation:
+
+   Larger properties (accommodates, bedrooms) and private rooms command higher prices.
+
+   Listings with instant_bookable enabled were slightly cheaper, possibly due to host incentives.
+
+   Limitations:
+
+   Linear Regression assumes linearity, which may not capture complex relationships.
+
+   Data imputation methods may introduce bias.
+
+
+##  Recommendations
+
+   Optimize Pricing: Hosts with larger properties can justify higher prices.
+
+
+## Appendix
+
+   Code: Provided in the Jupyter notebook (Machine-Learning-Model-to-Predict-Prices-for-Rental-Properties.py).
+
+   Data: Processed dataset derived from Air_BNB.xlsx.
+
