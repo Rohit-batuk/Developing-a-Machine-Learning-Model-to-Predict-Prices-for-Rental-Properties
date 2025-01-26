@@ -77,19 +77,12 @@ Data Preprocessing
 
    Evaluation Metric: R² (coefficient of determination).
     
+   ![Imputaion methods](https://github.com/user-attachments/assets/8d958447-885c-4e92-9440-f4d0c4db1561)
 
 ## Analysis and Results
   
   Model Performance Across Strategies        
 
-  Imputation Method	       Outlier Treatment        	R² (Train)
-    
-  Mean	                         No	                    0.697
-  Mean                         	Yes	                    0.683
-  Median	                       No	                    0.697
-  Median	                      Yes	                    0.683
-  KNN	                           No	                    0.703
-  KNN                         	Yes	                    0.686
 
 
 ## Key Insights
